@@ -2,7 +2,7 @@
 
 # Base image with Node.js on Alpine for minimal size
 FROM node:20-alpine AS base
-RUN corepack enable pnpm
+RUN corepack enable pnpm && apk add --no-cache bash coreutils
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -23,8 +23,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Build the Next.js application
-RUN pnpm run build-only
+# Run the benchmark build script (cold build + incremental build)
+RUN chmod +x build.sh && pnpm run build
 
 # Production image - minimal footprint using standalone output
 FROM base AS runner

@@ -23,7 +23,7 @@ echo "build_id=$build_id" > $bench
 echo "push_ts=$push_ts" >> $bench
 echo "start_ts=$(date +%s)" >> $bench
 
-npm run build-only
+pnpm run build-only
 
 echo "end_ts=$(date +%s)" >> $bench
 echo "next_version=$(node -p "require('next/package.json').version")" >> $bench
@@ -62,7 +62,7 @@ echo "cache_exists=$cache_exists" >> $bench_incr
 echo "cache_size=$cache_size" >> $bench_incr
 echo "start_ts=$(date +%s)" >> $bench_incr
 
-npm run build-only
+pnpm run build-only
 
 echo "end_ts=$(date +%s)" >> $bench_incr
 echo "next_version=$(node -p "require('next/package.json').version")" >> $bench_incr
