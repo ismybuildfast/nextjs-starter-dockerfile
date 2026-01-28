@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:1
-
 # Base image with Node.js on Alpine for minimal size
 FROM node:20-alpine AS base
 RUN corepack enable pnpm && apk add --no-cache bash coreutils
@@ -12,8 +10,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 
 # Install dependencies with pnpm
-RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
-    pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 # Build the application
 FROM base AS builder
