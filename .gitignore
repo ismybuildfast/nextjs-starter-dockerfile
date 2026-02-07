@@ -35,3 +35,5 @@ next-env.d.ts
 /public/bench.txt
 .vercel
 .env.local
+/public/bench-incremental.txt
+/public/bench-warmup.txt
